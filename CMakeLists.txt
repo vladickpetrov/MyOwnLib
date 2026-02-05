@@ -3,4 +3,5 @@ project(MuOwnLib)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(MuOwnLib main.cpp)
+add_executable(MuOwnLib main.cpp
+        SimpleVector.h)
