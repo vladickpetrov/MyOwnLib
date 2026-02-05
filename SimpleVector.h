@@ -27,13 +27,19 @@ SimpleVector<T>::~SimpleVector() {
 
 template<typename T>
 void SimpleVector<T>::push_back(const T& value) {
-    if (capacity_ == 0) {
-        data_ = new T[1];
-        data_[0] = value;
-        ++size_;
-        ++capacity_;
-    } else {
+    if (capacity_ - size_ == 0) {
+        int new_capacity = (capacity_ == 0) ? 1 : capacity_ * 2;
+        T* new_data = new T[new_capacity];
+
+        for (int i = 0; i < size_; ++i) {
+            new_data[i] = data_[i];
+        }
+        delete [] data_;
+        data_ = new_data;
+        capacity_ = new_capacity;
     }
+    data_[size_] = value;
+    ++size_;
 }
 
 template<typename T>
